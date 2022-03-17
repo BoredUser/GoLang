@@ -5,9 +5,13 @@ import "fmt"
 type deck []string
 
 func (d deck) print() {
-	for _, card := range d {
-		fmt.Println(card)
+	for i, card := range d {
+		fmt.Println(i+1, card)
 	}
+}
+
+func (d deck) deal(handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
 }
 
 func newDeck() deck {
