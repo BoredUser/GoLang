@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"strings"
+)
 
 type deck []string
 
@@ -26,4 +30,12 @@ func newDeck() deck {
 	}
 
 	return cards
+}
+
+func (d deck) toString() string {
+	return strings.Join([]string(d), "\n")
+}
+
+func (d deck) saveToFile(fileName string) error {
+	return ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
 }
