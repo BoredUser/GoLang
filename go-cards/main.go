@@ -6,18 +6,32 @@ import (
 )
 
 func main() {
-	d := newDeck()
+	d := NewDeck()
 	fmt.Println("Original Deck :")
-	d.print()
-	err := d.saveToFile("deck")
+	d.Print()
+	err := d.SaveToFile("deck")
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println("-----------")
-	hand, d := d.deal(5)
+	hand, d := d.Deal(5)
 	fmt.Println("Hand :")
-	hand.print()
+	hand.Print()
 	fmt.Println("-----------")
 	fmt.Println("Remaining Deck :")
-	d.print()
+	d.Print()
+	fmt.Println("-----------")
+	fmt.Println("Shuffled Deck :")
+	d, err = ShuffleDeck(d)
+	if err != nil {
+		log.Fatal(err)
+	}
+	d.Print()
+	fmt.Println("-----------")
+	fmt.Println("Shuffled Deck :")
+	d, err = ShuffleDeck(d)
+	if err != nil {
+		log.Fatal(err)
+	}
+	d.Print()
 }
